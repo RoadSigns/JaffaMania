@@ -1,6 +1,9 @@
-﻿using MediatR;
+﻿using JaffaMania.Data;
+using JaffaMania.Website.Configuration;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -25,6 +28,8 @@ namespace JaffaMania.Website
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDataAccessLayerWithEfCore(Configuration);
+
             services.AddMvc();
             services.AddMediatR(typeof(Startup));
         }
@@ -36,6 +41,12 @@ namespace JaffaMania.Website
             loggerFactory.AddDebug();
 
             app.UseMvc();
+
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                serviceScope.ServiceProvider.GetService<JafamaniaDbContext>().Database.Migrate();
+                serviceScope.ServiceProvider.GetService<JafamaniaDbContext>().EnsureSeedData();
+            }
         }
     }
 }

@@ -1,25 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
+using JaffaMania.Data;
 using JaffaMania.Website.ApiFeatures.Contestants.ServiceModel;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace JaffaMania.Website.ApiFeatures.Contestants.Queries
 {
     public class GetAllContestantsQueryHandler : IRequestHandler<GetAllContestantsQuery, IList<Contestant>>
     {
+        public GetAllContestantsQueryHandler(JafamaniaDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
+
+        //
+        //  Methods:  IRequestHandler Implementation
+
         public IList<Contestant> Handle(GetAllContestantsQuery message)
         {
-            return new List<Contestant>
+            var contestantDtos = _dbContext
+                    .Contestants.Include(a=>a.AttemptsMade)
+                    .ToList();
+
+            return contestantDtos.Select(dto => new Contestant
             {
-                new Contestant{
-                    Id = "ab38493a-7186-4ed0-8e65-7ef6e5c69744",  GivenName="Contestant",FamilyName ="One",
-                    StageName = "Bulk Hogan", AttemptsMade = 2, BestTime = new TimeSpan(0,2,58)
-                },
-                new Contestant {
-                    Id = "6a39dfa6-8f44-48ed-8f85-fd7b6458725c", GivenName="Contestant", FamilyName="Two",
-                    AttemptsMade = 2, BestTime = new TimeSpan(0,4,30)
-                }
-            };
+                Id = dto.PublicId,
+                GivenName = dto.GivenName,
+                FamilyName = dto.FamilyName,
+                StageName = dto.StageName,
+                AttemptsMade = dto.AttemptsMade.Count,
+                BestTime = dto.AttemptsMade.OrderBy(o=>o.TimeTaken).First().TimeTaken
+            })
+            .ToList();
         }
+
+
+        //
+        //  Fields
+        private readonly JafamaniaDbContext _dbContext;
     }
 }

@@ -1,19 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
+using JaffaMania.Data;
 using JaffaMania.Website.ApiFeatures.Contestants.ServiceModel;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace JaffaMania.Website.ApiFeatures.Contestants.Queries
 {
     public class GetContestantAttemptsQueryHandler : IRequestHandler<GetContestantAttemptsQuery, IList<Attempt>>
     {
+        public GetContestantAttemptsQueryHandler(JafamaniaDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
+
+        //
+        //  Methods:  IRequestHandler Implementation
+
         public IList<Attempt> Handle(GetContestantAttemptsQuery message)
         {
-            return new List<Attempt>(new List<Attempt>
-            {
-                    new Attempt{ Id = "d1b4d397-a43a-4ce2-aa01-bc6081cf68ab", HappenedOn = new DateTime(2017,07,11), TimeTaken = new TimeSpan(0,0,2,56,00) },
-                    new Attempt{ Id = "45778f45-29d4-456a-bcff-7ee8dae526a1", HappenedOn = new DateTime(2017,07,05), TimeTaken = new TimeSpan(0,0,3,30,00) }
-             });
+            var customer = _dbContext.Contestants.Include(i => i.AttemptsMade)
+                    .FirstOrDefault(c => c.PublicId == message.ContestantId);
+
+            return customer.AttemptsMade
+                .Select(dto => new Attempt  {
+                    Id = dto.PublicId,
+                    HappenedOn = dto.HappenedOn,
+                    TimeTaken = dto.TimeTaken
+                })
+                .ToList();
         }
+
+
+        //
+        //  Fields
+        private readonly JafamaniaDbContext _dbContext;
     }
 }

@@ -27,16 +27,17 @@ namespace JaffaMania.Website.ApiFeatures.Contestants
 
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetContestantById()
+        public async Task<IActionResult> GetContestantById(string id)
         {
-            var getContestantByIdQuery = new GetContestantByIdQuery();
+            var getContestantByIdQuery = new GetContestantByIdQuery(id);
             return Ok(await _mediator.Send(getContestantByIdQuery));
         }
 
+
         [HttpGet("{id}/attempts")]
-        public async Task<IActionResult> GetContestantsAttempts()
+        public async Task<IActionResult> GetContestantsAttempts(string id)
         {
-            var getContestantAttemptsQuery = new GetContestantAttemptsQuery();
+            var getContestantAttemptsQuery = new GetContestantAttemptsQuery(id);
             return Ok(await _mediator.Send(getContestantAttemptsQuery));
         }
 
