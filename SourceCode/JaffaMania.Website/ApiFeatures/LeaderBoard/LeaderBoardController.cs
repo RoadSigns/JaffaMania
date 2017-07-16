@@ -21,7 +21,12 @@ namespace JaffaMania.Website.ApiFeatures.LeaderBoard
         public async Task<IActionResult> GetLeaderBoard()
         {
             var getAllLeaderBoardPositionsQuery = new GetAllLeaderBoardPositionsQuery();
-            return Ok(await _mediator.Send(getAllLeaderBoardPositionsQuery));
+            var getAllLeaderBoardPositionsResult =await _mediator.Send(getAllLeaderBoardPositionsQuery);
+
+            return getAllLeaderBoardPositionsResult == null || getAllLeaderBoardPositionsResult.Count > 0
+                ? Ok(getAllLeaderBoardPositionsResult)
+                : NotFound() as IActionResult;
+
         }
 
 

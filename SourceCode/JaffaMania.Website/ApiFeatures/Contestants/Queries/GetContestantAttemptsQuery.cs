@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using JaffaMania.Website.ApiFeatures.Contestants.ServiceModel;
+using JaffaMania.Website.Extensions;
 using MediatR;
 
 namespace JaffaMania.Website.ApiFeatures.Contestants.Queries
@@ -16,5 +17,15 @@ namespace JaffaMania.Website.ApiFeatures.Contestants.Queries
         //  Properties
 
         public string ContestantId { get;}
+
+
+        //
+        //  Methods:  Validation
+
+        public bool IsValid()
+        {
+            return this.ContestantId.IsValidGuid();
+        }
+
     }
 }
