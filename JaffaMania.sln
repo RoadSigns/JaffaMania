@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.15
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JaffaMania.Website", "SourceCode\JaffaMania.Website\JaffaMania.Website.csproj", "{1A64CB8C-BD97-498B-9711-C5F0EADB444E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SourceCode", "SourceCode", "{530471FD-1796-4ED2-AB2C-F8792292CE8E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{085122AE-7AF9-4241-A0F5-E6B23031732C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JaffaMania.Website.Tests", "Tests\JaffaMania.Website.Tests\JaffaMania.Website.Tests.csproj", "{3CEAC370-F105-4F42-B0F8-171AA2F80771}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{4CC417A2-1E9D-4878-8BE5-8D6C0041C46C}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\AddMigration.cmd = Scripts\AddMigration.cmd
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JaffaMania.Data", "SourceCode\JaffaMania.Data\JaffaMania.Data.csproj", "{1A8861E5-5E78-48D7-B0C3-431030E82559}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A64CB8C-BD97-498B-9711-C5F0EADB444E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A64CB8C-BD97-498B-9711-C5F0EADB444E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A64CB8C-BD97-498B-9711-C5F0EADB444E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A64CB8C-BD97-498B-9711-C5F0EADB444E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CEAC370-F105-4F42-B0F8-171AA2F80771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CEAC370-F105-4F42-B0F8-171AA2F80771}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CEAC370-F105-4F42-B0F8-171AA2F80771}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CEAC370-F105-4F42-B0F8-171AA2F80771}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A8861E5-5E78-48D7-B0C3-431030E82559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A8861E5-5E78-48D7-B0C3-431030E82559}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A8861E5-5E78-48D7-B0C3-431030E82559}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A8861E5-5E78-48D7-B0C3-431030E82559}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1A64CB8C-BD97-498B-9711-C5F0EADB444E} = {530471FD-1796-4ED2-AB2C-F8792292CE8E}
+		{3CEAC370-F105-4F42-B0F8-171AA2F80771} = {085122AE-7AF9-4241-A0F5-E6B23031732C}
+		{1A8861E5-5E78-48D7-B0C3-431030E82559} = {530471FD-1796-4ED2-AB2C-F8792292CE8E}
+	EndGlobalSection
+EndGlobal
