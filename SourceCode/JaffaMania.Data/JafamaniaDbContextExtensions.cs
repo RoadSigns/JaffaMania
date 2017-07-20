@@ -39,7 +39,7 @@ namespace JaffaMania.Data
                         new AttemptDto  {
                             PublicId = "3a4b1359-7f64-43cd-bf5c-6e467a5cf2b5",
                             HappenedOn = new DateTime(2017, 07, 11),
-                            TimeTaken = new TimeSpan(0, 0, 2, 56, 00)
+                            TimeTaken = new TimeSpan(0, 0, 4, 38, 00)
                         }
                     }
                 });
