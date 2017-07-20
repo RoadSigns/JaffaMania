@@ -13,5 +13,11 @@ namespace JaffaMania.Data.DataModel
         public DateTime HappenedOn { get; set; }
 
         public TimeSpan TimeTaken { get; set; }
+
+
+        //
+        //  Navigation Properties
+
+        public ContestantDto Contestant { get; set; }
     }
 }

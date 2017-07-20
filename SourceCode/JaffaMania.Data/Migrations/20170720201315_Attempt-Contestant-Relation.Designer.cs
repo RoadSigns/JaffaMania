@@ -8,9 +8,10 @@ using JaffaMania.Data;
 namespace JaffaMania.Data.Migrations
 {
     [DbContext(typeof(JafamaniaDbContext))]
-    partial class JafamaniaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170720201315_Attempt-Contestant-Relation")]
+    partial class AttemptContestantRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")
@@ -44,8 +45,6 @@ namespace JaffaMania.Data.Migrations
                     b.Property<string>("FamilyName");
 
                     b.Property<string>("GivenName");
-
-                    b.Property<string>("PhotoUri");
 
                     b.Property<string>("PublicId");
 

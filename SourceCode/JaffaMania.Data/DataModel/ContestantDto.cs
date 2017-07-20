@@ -16,6 +16,20 @@ namespace JaffaMania.Data.DataModel
 
         public string StageName { get; set; }
 
+        public string PhotoUri { get; set; }
+        
+
+        //
+        //  Navigation Properties
+
         public IList<AttemptDto> AttemptsMade { get; set; }
+
+
+        //
+        //  Expression-bodied members
+
+        public string FullName => string.IsNullOrEmpty(StageName)
+            ? $"{GivenName} {FamilyName}"
+            : $"{GivenName} '{StageName}' {FamilyName}";
     }
 }
